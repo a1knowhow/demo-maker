@@ -1,0 +1,61 @@
+{
+  "name": "@a1knowhow/demo-maker",
+  "version": "0.1.0",
+  "description": "Demo videos as code — configure once, re-run forever. YAML + Playwright → polished, consistent product feature videos.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "bin": {
+    "demo-maker": "./bin/demo-maker.mjs"
+  },
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "files": [
+    "bin",
+    "src",
+    "examples",
+    "docs",
+    "LICENSE",
+    "README.md",
+    "SECURITY.md",
+    "llms.txt"
+  ],
+  "keywords": [
+    "automation",
+    "cli",
+    "demo",
+    "ffmpeg",
+    "playwright",
+    "product-demo",
+    "screen-recording",
+    "video",
+    "yaml"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/a1knowhow/demo-maker.git"
+  },
+  "homepage": "https://github.com/a1knowhow/demo-maker#readme",
+  "bugs": {
+    "url": "https://github.com/a1knowhow/demo-maker/issues"
+  },
+  "scripts": {
+    "demo-maker": "tsx src/main.ts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "playwright": "^1.62.1",
+    "tsx": "^4.23.13",
+    "yaml": "^2.9.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.10",
+    "typescript": "^5.9.3",
+    "vitest": "^3.0.9"
+  }
+}

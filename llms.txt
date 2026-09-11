@@ -1,0 +1,30 @@
+# demo-maker
+
+> Demo videos as code — YAML + Playwright → polished, consistent product feature videos. Configure once, re-run forever.
+
+Open-source CLI (`@a1knowhow/demo-maker`). Requires Node.js 20+, Playwright Chromium, and ffmpeg. Apache-2.0.
+
+Prefer markdown docs linked below over scraping HTML. Schema lives in source TypeScript.
+
+## Docs
+
+- [README](https://raw.githubusercontent.com/a1knowhow/demo-maker/main/README.md): Overview, install, quick start
+- [Getting started](https://raw.githubusercontent.com/a1knowhow/demo-maker/main/docs/getting-started.md): First scenario and MP4
+- [CLI](https://raw.githubusercontent.com/a1knowhow/demo-maker/main/docs/cli.md): Commands and flags
+- [Scenario schema](https://raw.githubusercontent.com/a1knowhow/demo-maker/main/docs/scenario-schema.md): YAML structure
+- [Actions](https://raw.githubusercontent.com/a1knowhow/demo-maker/main/docs/actions.md): Step actions
+- [Locators](https://raw.githubusercontent.com/a1knowhow/demo-maker/main/docs/locators.md): Targeting UI
+- [Video & pacing](https://raw.githubusercontent.com/a1knowhow/demo-maker/main/docs/video-and-pacing.md): Recording quality
+- [Recording](https://raw.githubusercontent.com/a1knowhow/demo-maker/main/docs/recording.md): Live record to YAML
+- [Repair](https://raw.githubusercontent.com/a1knowhow/demo-maker/main/docs/repairing-scenarios.md): Fix after UI changes
+
+## Optional
+
+- [Docs index](https://raw.githubusercontent.com/a1knowhow/demo-maker/main/docs/README.md)
+- [Imports & fragments](https://raw.githubusercontent.com/a1knowhow/demo-maker/main/docs/imports-and-fragments.md)
+- [Variables](https://raw.githubusercontent.com/a1knowhow/demo-maker/main/docs/variables.md)
+- [URL capture](https://raw.githubusercontent.com/a1knowhow/demo-maker/main/docs/url-capture.md)
+- [Library API](https://raw.githubusercontent.com/a1knowhow/demo-maker/main/docs/library-api.md)
+- [Types](https://raw.githubusercontent.com/a1knowhow/demo-maker/main/src/types.ts): Typed scenario schema
+- [Example scenario](https://raw.githubusercontent.com/a1knowhow/demo-maker/main/examples/smoke.yaml)
+- [Security policy](https://raw.githubusercontent.com/a1knowhow/demo-maker/main/SECURITY.md)

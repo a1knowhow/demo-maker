@@ -1,0 +1,18 @@
+name: smoke
+description: Minimal public example — opens example.com (no auth)
+base_url: https://example.com
+video:
+  enabled: true
+  dir: output/videos
+  filename: smoke-[date:"YYYY-MM-DD-HHmm"].mp4
+  size: { width: 1920, height: 1080 }
+  viewport: { width: 1440, height: 810 }   # optional; fit laptop screen when headed
+steps:
+  - action: navigate
+    url: "/"
+    caption: "Example domain"
+  - action: expect_visible
+    locator:
+      text: Example Domain
+  - action: wait
+    timeout_ms: 800
