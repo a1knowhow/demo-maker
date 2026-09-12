@@ -1,0 +1,50 @@
+Base URL: https://github.com
+Running scenario: demo1-introduction (35/35 steps)
+10:35:58 - Step  1/35: title_card     - From install to your first MP4
+10:36:00 - Step  2/35: log            - ── Scene 1: Repository home → Getting started
+[log] ── Scene 1: Repository home → Getting started
+10:36:01 - Step  3/35: navigate       - Open the demo-maker repository
+10:36:04 - Step  4/35: expect_visible - link "demo-maker"
+10:36:04 - Step  5/35: wait           - 800ms
+10:36:05 - Step  6/35: navigate       - Getting started
+10:36:08 - Step  7/35: expect_visible - heading "Getting started"
+10:36:08 - Step  8/35: log            - ── Scene 2: Install
+[log] ── Scene 2: Install
+10:36:08 - Step  9/35: click          - Install
+10:36:10 - Step 10/35: wait           - 900ms
+10:36:11 - Step 11/35: log            - ── Scene 3: Create your YAML
+[log] ── Scene 3: Create your YAML
+10:36:12 - Step 12/35: click          - link "Permalink: Step 3 — Point at your app"
+10:36:13 - Step 13/35: click          - Create your YAML file
+10:36:14 - Step 14/35: wait           - 1000ms
+10:36:16 - Step 15/35: log            - ── Scene 4: Env vars when needed
+[log] ── Scene 4: Env vars when needed
+10:36:16 - Step 16/35: click          - Env vars when you need auth
+10:36:18 - Step 17/35: wait           - 900ms
+10:36:19 - Step 18/35: log            - ── Scene 5: Record video
+[log] ── Scene 5: Record video
+10:36:19 - Step 19/35: click          - Enable video for MP4 output
+10:36:21 - Step 20/35: wait           - 500ms
+10:36:21 - Step 21/35: log            - ── Scene 6: Generate draft YAML
+[log] ── Scene 6: Generate draft YAML
+10:36:22 - Step 22/35: click          - Generate draft YAML with demo-maker record
+10:36:23 - Step 23/35: wait           - 1000ms
+10:36:24 - Step 24/35: log            - ── Scene 7: Actions reference
+[log] ── Scene 7: Actions reference
+10:36:25 - Step 25/35: click          - link "Permalink: Next reading"
+10:36:26 - Step 26/35: click          - Browse every action
+10:36:28 - Step 27/35: wait           - navigate, click, type, expect_visible, …
+10:36:29 - Step 28/35: log            - ── Scene 8: Locators
+[log] ── Scene 8: Locators
+10:36:30 - Step 29/35: click          - link "Permalink: Related"
+10:36:31 - Step 30/35: click          - How to target UI elements
+10:36:33 - Step 31/35: wait           - 800ms
+10:36:34 - Step 32/35: click          - Unique aria-labels keep demos stable
+10:36:35 - Step 33/35: wait           - 1400ms
+10:36:37 - Step 34/35: transition     - fade 400ms
+10:36:38 - Step 35/35: title_card     - Try https://github.com/a1knowhow/demo-maker
+Re-encoded to H.264 MP4 (CRF 18). Playback speed 1.1×. Upscaled 1440x810 → 1920x1080.
+Timing saved: demo-maker/output/videos/demo1-introduction-2026-09-12-0735.timing.json
+Scenario completed successfully.
+Video saved: demo-maker/output/videos/demo1-introduction-2026-09-12-0735.mp4
+Timing saved: demo-maker/output/videos/demo1-introduction-2026-09-12-0735.timing.json

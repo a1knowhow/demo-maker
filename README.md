@@ -35,6 +35,26 @@ npx demo-maker run examples/smoke.yaml --headless --fast
 
 Step-by-step (install → first MP4 → record → fragments): **[docs/getting-started.md](./docs/getting-started.md)**
 
+## Example walkthrough
+
+Intro tour: open this repo on GitHub and walk getting-started → actions → locators (imports, title cards, captions, pacing):
+
+```bash
+npx demo-maker run examples/demo1-introduction.yaml
+```
+
+<video src="https://github.com/user-attachments/assets/4f1ded4a-5874-43f9-9d67-17843164ac61" controls width="720"></video>
+
+[View logs](./examples/files/demo1-introduction-run.log)
+
+Richer CI walkthrough (Actions → green run → test job):
+
+```bash
+npx demo-maker run examples/demo2-github-actions.yaml
+```
+
+([`examples/demo1-introduction.yaml`](./examples/demo1-introduction.yaml) · [`examples/demo2-github-actions.yaml`](./examples/demo2-github-actions.yaml) · [`examples/smoke.yaml`](./examples/smoke.yaml) for a minimal check)
+
 ## Documentation
 
 

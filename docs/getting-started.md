@@ -36,12 +36,24 @@ npx playwright install chromium
 **Goal:** Prove the CLI drives a browser.
 
 ```bash
-demo-maker run examples/smoke.yaml --headless --fast
+npx demo-maker run examples/smoke.yaml --headless --fast
 ```
 
 **Expected:** Scenario completes successfully (opens example.com, asserts “Example Domain”).
 
 **Common failure:** Playwright browser missing → re-run `npx playwright install chromium`.
+
+For a public docs tour (getting-started → actions → locators):
+
+```bash
+npx demo-maker run examples/demo1-introduction.yaml --headless --fast
+```
+
+For a richer GitHub Actions UI walkthrough:
+
+```bash
+npx demo-maker run examples/demo2-github-actions.yaml --headless --fast
+```
 
 ---
 
@@ -67,7 +79,7 @@ steps:
 ```
 
 ```bash
-demo-maker run scenarios/my-app.yaml --headless --fast
+npx demo-maker run scenarios/my-app.yaml --headless --fast
 ```
 
 **Expected:** Steps pass against your running app.
@@ -102,16 +114,16 @@ steps:
 ```
 
 ```bash
-demo-maker run scenarios/login.yaml --env-file scenarios/u2.env --fast
+npx demo-maker run scenarios/login.yaml --env-file scenarios/u2.env --fast
 ```
 
 **Save session** after login for later runs:
 
 ```bash
-demo-maker run scenarios/login.yaml --env-file scenarios/u2.env \
+npx demo-maker run scenarios/login.yaml --env-file scenarios/u2.env \
   --save-storage-state=scenarios/session.json
 
-demo-maker run scenarios/app.yaml --env-file scenarios/u2.env \
+npx demo-maker run scenarios/app.yaml --env-file scenarios/u2.env \
   --storage-state=scenarios/session.json --fast
 ```
 
@@ -131,7 +143,7 @@ video:
 ```
 
 ```bash
-demo-maker run scenarios/my-app.yaml --env-file scenarios/u2.env
+npx demo-maker run scenarios/my-app.yaml --env-file scenarios/u2.env
 ```
 
 **Expected:** MP4 under `output/videos/` plus a sibling `*.timing.json`.
@@ -153,7 +165,7 @@ demo-maker record \
   --env-file scenarios/u2.env
 ```
 
-Interact in the browser, then **Ctrl+C** to save. Edit captions and locators, then `demo-maker run`.
+Interact in the browser, then **Ctrl+C** to save. Edit captions and locators, then `npx demo-maker run`.
 
 Continue from an existing prefix (e.g. login):
 

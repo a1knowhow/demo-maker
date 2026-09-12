@@ -1,0 +1,166 @@
+name: demo1-introduction
+title: "demo-maker — Getting started walkthrough"
+description: |
+  Public intro demo: open this repo on GitHub, walk getting-started.md
+  (install → YAML → env → video → record), then actions.md and locators.md
+  (including the accessibility tip). No auth required.
+base_url: https://github.com
+video:
+  enabled: true
+  dir: output/videos
+  filename: demo1-introduction-[date:"YYYY-MM-DD-HHmm"].mp4
+  size: { width: 1920, height: 1080 }
+  viewport: { width: 1440, height: 810 }
+  caption_parallel: true
+  playback_speed: 1.1
+# Optional BGM (bring your own royalty-free track; path relative to cwd):
+# audio:
+#   background: path/to/your-track.mp3
+step_delay_ms: 250
+slow_mo_ms: 50
+typing_delay_ms: 40
+post_click_delay_ms: 250
+navigate_hold_ms: 1000
+pre_action_delay_ms: 200
+action_timeout_ms: 30000
+
+steps:
+  - action: title_card
+    text: "From install to your first MP4"
+    hold_ms: 1400
+
+  - action: log
+    message: "── Scene 1: Repository home → Getting started"
+
+  - import: fragments/open-repository.yaml
+
+  - action: navigate
+    url: /a1knowhow/demo-maker/blob/main/docs/getting-started.md
+    caption: "Getting started"
+
+  - action: expect_visible
+    locator:
+      role: heading
+      name: Getting started
+
+  - action: log
+    message: "── Scene 2: Install"
+
+  - action: click
+    locator:
+      role: link
+      name: "Permalink: Step 1 — Install prerequisites"
+    caption: "Install"
+
+  - action: wait
+    timeout_ms: 900
+
+  - action: log
+    message: "── Scene 3: Create your YAML"
+
+  - action: click
+    locator:
+      role: link
+      name: "Permalink: Step 3 — Point at your app"
+
+  - action: click
+    locator:
+      text: "name: my-app-smoke"
+    caption: "Create your YAML file"
+
+  - action: wait
+    timeout_ms: 1000
+
+  - action: log
+    message: "── Scene 4: Env vars when needed"
+
+  - action: click
+    locator:
+      role: link
+      name: "Permalink: Step 4 — Env file and auth (when needed)"
+    caption: "Env vars when you need auth"
+
+  - action: wait
+    timeout_ms: 900
+
+  - action: log
+    message: "── Scene 5: Record video"
+
+  - action: click
+    locator:
+      role: link
+      name: "Permalink: Step 5 — Record a video (MP4)"
+    caption: "Enable video for MP4 output"
+
+  - action: wait
+    timeout_ms: 500
+
+  - action: log
+    message: "── Scene 6: Generate draft YAML"
+
+  - action: click
+    locator:
+      role: link
+      name: "Permalink: Step 6 — Record interactions instead of writing YAML by hand"
+    caption: "Generate draft YAML with demo-maker record"
+
+  - action: wait
+    timeout_ms: 1000
+
+  - action: log
+    message: "── Scene 7: Actions reference"
+
+  - action: click
+    locator:
+      role: link
+      name: "Permalink: Next reading"
+
+  - action: click
+    locator:
+      selector: '.markdown-body a[href$="actions.md"]'
+    settle_until:
+      locator:
+        role: heading
+        name: Actions
+    caption: "Browse every action"
+
+  - action: wait
+    timeout_ms: 800
+    caption: "navigate, click, type, expect_visible, …"
+
+  - action: log
+    message: "── Scene 8: Locators"
+
+  - action: click
+    locator:
+      role: link
+      name: "Permalink: Related"
+
+  - action: click
+    locator:
+      selector: '.markdown-body a[href$="locators.md"]'
+    settle_until:
+      locator:
+        role: heading
+        name: Locators
+    caption: "How to target UI elements"
+
+  - action: wait
+    timeout_ms: 800
+
+  - action: click
+    locator:
+      role: link
+      name: "Permalink: Accessibility tip (for app authors)"
+    caption: "Unique aria-labels keep demos stable"
+
+  - action: wait
+    timeout_ms: 1400
+
+  - action: transition
+    fade_ms: 400
+    hold_ms: 300
+
+  - action: title_card
+    text: "Try https://github.com/a1knowhow/demo-maker"
+    hold_ms: 1800

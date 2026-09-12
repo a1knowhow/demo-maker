@@ -1,0 +1,109 @@
+name: demo2-github-actions
+title: "demo-maker — GitHub Actions walkthrough"
+description: |
+  Richer public example: open this repo on GitHub, open Actions, open the latest
+  successful run, and open the test job (green check-marks on each step).
+  No auth required for this walkthrough. Expanding step logs needs a signed-in
+  GitHub session (optional --storage-state); anonymously GitHub disables clicks
+  on log steps (pointer-events:none).
+base_url: https://github.com
+video:
+  enabled: true
+  dir: output/videos
+  filename: demo2-github-actions-[date:"YYYY-MM-DD-HHmm"].mp4
+  size: { width: 1920, height: 1080 }
+  viewport: { width: 1440, height: 810 }
+  caption_parallel: true
+  playback_speed: 1.25
+# Optional BGM (bring your own royalty-free track; path relative to cwd):
+# audio:
+#   background: path/to/your-track.mp3
+step_delay_ms: 400
+slow_mo_ms: 80
+typing_delay_ms: 40
+post_click_delay_ms: 350
+navigate_hold_ms: 1800
+pre_action_delay_ms: 350
+action_timeout_ms: 30000
+
+steps:
+  - action: title_card
+    text: "Demo videos as code"
+    hold_ms: 1600
+
+  - action: log
+    message: "── Scene 1: Repository home → Actions"
+
+  - import: fragments/open-repository.yaml
+
+  - action: click
+    locator:
+      role: link
+      name: Actions
+    settle_until:
+      locator:
+        role: combobox
+        name: Filter workflow runs
+    caption: "Open GitHub Actions"
+
+  - action: wait
+    timeout_ms: 1200
+    caption: "CI runs for this repo"
+
+  - action: log
+    message: "── Scene 2: Open the latest successful run"
+
+  - action: title_card
+    text: "Inspect a green CI run"
+    hold_ms: 1400
+
+  - action: click
+    locator:
+      role: link
+      name: /completed successfully:/i
+    settle_until:
+      locator:
+        role: link
+        name: test
+    caption: "Open the first successful workflow run"
+
+  - action: wait
+    timeout_ms: 1000
+
+  - action: log
+    message: "── Scene 3: Open the test job"
+
+  - action: click
+    locator:
+      role: link
+      name: test
+    settle_until:
+      text: Run npm test
+    caption: "Open the test job"
+
+  - action: expect_visible
+    locator:
+      text: Run npm test
+
+  - action: expect_visible
+    locator:
+      text: Run npm run typecheck
+
+  - action: wait
+    timeout_ms: 2800
+    caption: "Green checks on every step — re-run forever"
+
+  # Expanding a step log requires a signed-in GitHub session (anonymous UI uses
+  # pointer-events:none on <details>). With storage_state, you can add:
+  # - action: click
+  #   locator:
+  #     selector: 'summary.CheckStep-header:has-text("Run npm test")'
+  #   caption: "Expand the npm test step"
+
+  - action: transition
+    fade_ms: 500
+    hold_ms: 400
+
+  - action: title_card
+    text: "Try https://github.com/a1knowhow/demo-maker"
+    hold_ms: 2200

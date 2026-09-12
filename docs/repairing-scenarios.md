@@ -25,7 +25,7 @@ demo-maker check scenarios/02.create.yaml \
 Replay only the prefix, then pause headed:
 
 ```bash
-demo-maker run scenarios/02.create.yaml \
+npx demo-maker run scenarios/02.create.yaml \
   --env-file scenarios/u2.env \
   --storage-state=scenarios/session.json \
   --fast --end-step=7 --pause-at-end

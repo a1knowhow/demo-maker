@@ -18,7 +18,7 @@ demo-maker record \
 - `--save-json` — optional raw JSON for later `--from` / `import`
 - Refuses to overwrite an existing `--save-to` on a fresh live record (delete/rename first)
 
-Edit captions, variables, and locators after saving, then `demo-maker run`.
+Edit captions, variables, and locators after saving, then `npx demo-maker run`.
 
 ## Continue from existing YAML
 

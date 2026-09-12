@@ -1,0 +1,15 @@
+name: open-repository
+description: Fragment — open the demo-maker repository home page
+base_url: https://github.com
+steps:
+  - action: navigate
+    url: /a1knowhow/demo-maker
+    caption: "Open the demo-maker repository"
+
+  - action: expect_visible
+    locator:
+      role: link
+      name: demo-maker
+
+  - action: wait
+    timeout_ms: 800

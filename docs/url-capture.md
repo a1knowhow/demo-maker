@@ -34,7 +34,7 @@ steps:
 Repeatable flag:
 
 ```bash
-demo-maker run demo.yaml \
+npx demo-maker run demo.yaml \
   --capture-from-url 'workspace_id=/workspace/([^/]+)(?:/|$)' \
   --capture-from-url 'document_id=/workspace/[^/]+/doc/([^/]+)'
 ```
@@ -49,7 +49,7 @@ Or a JSON file:
 ```
 
 ```bash
-demo-maker run demo.yaml --url-capture-file=./url-capture.json
+npx demo-maker run demo.yaml --url-capture-file=./url-capture.json
 ```
 
 CLI rules are applied **after** scenario `url_capture` (same variable name overwrites when both match later).

@@ -2,7 +2,7 @@
 
 Purpose: Top-level YAML fields for an entry scenario. Typed definitions: [`src/types.ts`](../src/types.ts).
 
-**Metadata rule:** Only the **entry** file (the path you pass to `demo-maker run`) supplies `name`, `base_url`, `video`, pacing, `auth`, etc. Imported files contribute **steps only**.
+**Metadata rule:** Only the **entry** file (the path you pass to `npx demo-maker run`) supplies `name`, `base_url`, `video`, pacing, `auth`, etc. Imported files contribute **steps only**.
 
 ## Required / common fields
 

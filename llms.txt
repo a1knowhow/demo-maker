@@ -27,4 +27,6 @@ Prefer markdown docs linked below over scraping HTML. Schema lives in source Typ
 - [Library API](https://raw.githubusercontent.com/a1knowhow/demo-maker/main/docs/library-api.md)
 - [Types](https://raw.githubusercontent.com/a1knowhow/demo-maker/main/src/types.ts): Typed scenario schema
 - [Example scenario](https://raw.githubusercontent.com/a1knowhow/demo-maker/main/examples/smoke.yaml)
+- [Getting started walkthrough](https://raw.githubusercontent.com/a1knowhow/demo-maker/main/examples/demo1-introduction.yaml)
+- [GitHub Actions walkthrough](https://raw.githubusercontent.com/a1knowhow/demo-maker/main/examples/demo2-github-actions.yaml)
 - [Security policy](https://raw.githubusercontent.com/a1knowhow/demo-maker/main/SECURITY.md)

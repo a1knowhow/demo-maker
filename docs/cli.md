@@ -39,9 +39,9 @@ Back-compat: if the first argument ends in `.yaml` / `.yml`, it is treated as `r
 Examples:
 
 ```bash
-demo-maker run scenarios/demo.yaml --env-file scenarios/u2.env --fast
+npx demo-maker run scenarios/demo.yaml --env-file scenarios/u2.env --fast
 demo-maker check scenarios/demo.yaml --env-file scenarios/u2.env --storage-state=scenarios/session.json
-demo-maker run scenarios/demo.yaml --end-step=7 --pause-at-end --env-file scenarios/u2.env
+npx demo-maker run scenarios/demo.yaml --end-step=7 --pause-at-end --env-file scenarios/u2.env
 ```
 
 ## `record` flags (summary)
