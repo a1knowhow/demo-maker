@@ -1,7 +1,7 @@
 name: Create Version Tag
 
 # Tags default-branch HEAD after package.json was bumped in a reviewed PR.
-# Pushing the tag triggers publish.yml (npm stage publish).
+# Then dispatches release.yml (GitHub Release → npm stage via publish.yml).
 #
 # Security (public repo):
 # - workflow_dispatch is already limited to users with write access
@@ -20,6 +20,7 @@ on:
 
 permissions:
   contents: write
+  actions: write
 
 concurrency:
   group: create-version-tag
@@ -142,6 +143,16 @@ jobs:
           git tag "$VERSION"
           git push origin "refs/tags/${VERSION}"
 
+      - name: Dispatch release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          set -euo pipefail
+          gh workflow run release.yml \
+            --repo "$GITHUB_REPOSITORY" \
+            --ref "$VERSION"
+
       - name: Add workflow summary
         env:
           VERSION: ${{ steps.version.outputs.version }}
@@ -154,5 +165,5 @@ jobs:
             echo "- Tag: \`${VERSION}\`"
             echo "- Previous: \`${LATEST_TAG}\`"
             echo "- Commit: \`${COMMIT_SHA}\`"
-            echo "- Next: \`publish.yml\` stages the npm package (approve on npmjs.com with 2FA)"
+            echo "- Dispatched: \`release.yml\` (GitHub Release → npm stage)"
           } >> "$GITHUB_STEP_SUMMARY"

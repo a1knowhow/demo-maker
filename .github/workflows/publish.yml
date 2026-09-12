@@ -1,9 +1,10 @@
 name: publish
 
+# Dispatched by release.yml after a GitHub Release is created.
+# Trusted Publisher on npm must allow this workflow file (publish.yml) for stage-only.
+
 on:
-  push:
-    tags:
-      - "v*"
+  workflow_dispatch:
 
 permissions:
   contents: read

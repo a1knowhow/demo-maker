@@ -1,0 +1,113 @@
+name: Release
+
+# Security (public repo):
+# - No tag-push trigger (avoids release from a non-admin git push of v*)
+# - workflow_dispatch: repository admins only
+# - github-actions[bot] allowed when Create Version Tag dispatches this
+#   (that workflow already requires admin)
+
+on:
+  workflow_dispatch:
+    inputs:
+      skip_npm_publish:
+        description: Skip dispatching publish.yml (GitHub Release only; use when this version is already on npm)
+        type: boolean
+        required: false
+        default: false
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  release:
+    name: Create GitHub Release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      actions: write
+    steps:
+      - name: Require repository admin
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          # Create Version Tag dispatches us with the Actions bot after its own admin check.
+          if [ "${GITHUB_ACTOR}" = "github-actions[bot]" ]; then
+            echo "Allowing github-actions[bot] (dispatched from Create Version Tag)."
+            exit 0
+          fi
+          perm="$(gh api "repos/${GITHUB_REPOSITORY}/collaborators/${GITHUB_ACTOR}/permission" --jq .permission)"
+          if [ "$perm" != "admin" ]; then
+            echo "::error::Only repository admins can run Release (actor=${GITHUB_ACTOR} permission=${perm})."
+            exit 1
+          fi
+          echo "Actor ${GITHUB_ACTOR} has admin permission."
+
+      - name: Checkout repository
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          fetch-tags: true
+
+      - name: Resolve and verify version
+        id: version
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ ! "${GITHUB_REF}" =~ ^refs/tags/v ]]; then
+            echo "::error::Release must run on a version tag (got ${GITHUB_REF})."
+            echo "In the Actions UI, run this workflow from the tag, not a branch."
+            exit 1
+          fi
+          VERSION="${GITHUB_REF_NAME}"
+          VERSION_NAME="${VERSION#v}"
+          PKG_VERSION="$(node -p "require('./package.json').version")"
+          if [ "$PKG_VERSION" != "$VERSION_NAME" ]; then
+            echo "::error::package.json version ${PKG_VERSION} does not match tag ${VERSION}"
+            exit 1
+          fi
+          {
+            echo "version=${VERSION}"
+            echo "version_name=${VERSION_NAME}"
+          } >> "$GITHUB_OUTPUT"
+          echo "Verified ${VERSION} matches package.json ${PKG_VERSION}"
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.version.outputs.version }}
+          generate_release_notes: true
+          token: ${{ github.token }}
+
+      - name: Dispatch npm stage publish
+        if: ${{ inputs.skip_npm_publish != true }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          set -euo pipefail
+          gh workflow run publish.yml \
+            --repo "$GITHUB_REPOSITORY" \
+            --ref "$VERSION"
+          echo "Dispatched publish.yml on ${VERSION}"
+
+      - name: Add workflow summary
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+          SKIP_NPM: ${{ inputs.skip_npm_publish }}
+        run: |
+          {
+            echo "## Release created"
+            echo
+            echo "- Tag: \`${VERSION}\`"
+            if [ "$SKIP_NPM" = "true" ]; then
+              echo "- npm: skipped (\`skip_npm_publish\`)"
+            else
+              echo "- Next: \`publish.yml\` stages the npm package (approve on npmjs.com with 2FA)"
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
