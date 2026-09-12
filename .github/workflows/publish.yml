@@ -1,0 +1,37 @@
+name: publish
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: read
+
+jobs:
+  stage:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "22"
+          registry-url: https://registry.npmjs.org
+          cache: npm
+
+      - name: Ensure npm supports staged / trusted publishing
+        run: npm install -g npm@latest
+
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm test
+      - run: npm run typecheck
+
+      # Requires Trusted Publisher on npm (stage-only) for this workflow file.
+      # Approve on npmjs.com or: npm stage approve <id> (with 2FA).
+      # Provenance is generated from GitHub Actions OIDC (not local publishes).
+      - run: npm stage publish --provenance

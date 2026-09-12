@@ -42,11 +42,16 @@
   "bugs": {
     "url": "https://github.com/a1knowhow/demo-maker/issues"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "demo-maker": "tsx src/main.ts",
     "test": "vitest run",
     "test:watch": "vitest",
-    "typecheck": "tsc -p tsconfig.json --noEmit"
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "pack:check": "npm pack --dry-run",
+    "prepublishOnly": "npm test && npm run typecheck"
   },
   "dependencies": {
     "playwright": "^1.62.1",

@@ -20,7 +20,14 @@ import {
   playwrightActionToDemoStep,
   type PlaywrightRecordedAction,
 } from "./playwright-selector-to-locator";
-import { applyBaseUrlOverride, loadEnvFile, resolveBaseUrlFromEnv } from "./env";
+import {
+  applyBaseUrlOverride,
+  buildRunVariables,
+  collectFlatPlaceholderKeys,
+  DEMO_BASE_URL_ENV_KEY,
+  loadEnvFile,
+  resolveBaseUrlFromEnv,
+} from "./env";
 import { loadScenario } from "./load";
 import { parseScenario } from "./parse";
 import type { ParsedScenario } from "./types";
@@ -324,11 +331,10 @@ export async function runLiveRecord(options: RecordOptions): Promise<void> {
 
       let runContext: RunContext = { auth: { email: "", password: "" }, variables: {} };
       if (options.envFile) {
-        const env: Record<string, string | undefined> = { ...process.env, ...envFromFile };
         const emailEnv = scenarioToRun.auth?.email_env ?? "E2E_TEST_USER_EMAIL";
         const passwordEnv = scenarioToRun.auth?.password_env ?? "E2E_TEST_USER_PASSWORD";
-        const email = env[emailEnv];
-        const password = env[passwordEnv];
+        const email = envFromFile[emailEnv] ?? process.env[emailEnv];
+        const password = envFromFile[passwordEnv] ?? process.env[passwordEnv];
         if (!email || !password) {
           let envPath = resolve(cwd, options.envFile);
           if (!existsSync(envPath) && continueFrom) {
@@ -346,15 +352,18 @@ export async function runLiveRecord(options: RecordOptions): Promise<void> {
             `Missing credentials for replay. Set ${emailEnv} and ${passwordEnv} in env or --env-file. ${hint}`
           );
         }
-        const envVars: Record<string, string> = {};
-        if (typeof process !== "undefined" && process.env) {
-          for (const [k, v] of Object.entries(process.env)) {
-            if (typeof v === "string") envVars[k] = v;
-          }
-        }
         runContext = {
           auth: { email, password },
-          variables: { ...envVars, ...envFromFile, BASE_URL: scenarioToRun.base_url },
+          variables: buildRunVariables({
+            envFromFile,
+            baseUrl: scenarioToRun.base_url,
+            allowFromProcess: [
+              emailEnv,
+              passwordEnv,
+              DEMO_BASE_URL_ENV_KEY,
+              ...collectFlatPlaceholderKeys(JSON.stringify(scenarioToRun)),
+            ],
+          }),
         };
       }
 

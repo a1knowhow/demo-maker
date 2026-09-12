@@ -37,6 +37,48 @@ export function loadEnvFile(filePath: string): Record<string, string> {
 
 export const DEMO_BASE_URL_ENV_KEY = "BASE_URL";
 
+/** Single-segment `{{ NAME }}` placeholders (excludes nested paths like `auth.email`). */
+const FLAT_PLACEHOLDER_REGEX = /\{\{\s*([A-Za-z_][A-Za-z0-9_]*)\s*\}\}/g;
+
+/**
+ * Collect flat `{{ NAME }}` keys from text blobs (e.g. stringified scenario).
+ */
+export function collectFlatPlaceholderKeys(...texts: string[]): string[] {
+  const keys = new Set<string>();
+  for (const text of texts) {
+    FLAT_PLACEHOLDER_REGEX.lastIndex = 0;
+    for (const match of text.matchAll(FLAT_PLACEHOLDER_REGEX)) {
+      keys.add(match[1]!);
+    }
+  }
+  return [...keys];
+}
+
+/**
+ * Build template variables without copying the entire process environment.
+ * Includes: allowlisted process.env keys, --env-file entries (override), and BASE_URL.
+ */
+export function buildRunVariables(options: {
+  envFromFile: Record<string, string>;
+  baseUrl: string;
+  allowFromProcess: Iterable<string>;
+  processEnv?: Record<string, string | undefined>;
+}): Record<string, string> {
+  const processEnv = options.processEnv ?? process.env;
+  const fromProcess: Record<string, string> = {};
+  for (const key of options.allowFromProcess) {
+    const value = processEnv[key];
+    if (typeof value === "string") {
+      fromProcess[key] = value;
+    }
+  }
+  return {
+    ...fromProcess,
+    ...options.envFromFile,
+    BASE_URL: options.baseUrl,
+  };
+}
+
 /**
  * Resolve demo base URL from env file (preferred) or process.env.
  */
