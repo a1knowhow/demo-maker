@@ -14,11 +14,13 @@ locator: { text: "{{ DEMO_WORKSPACE1 }}" }
 
 Sources (later overrides earlier where applicable):
 
-- `process.env`
-- `--env-file` / `.env`-style file
+- `--env-file` / `.env`-style file (all keys)
+- Shell `process.env` only for: auth env names, `BASE_URL`, and flat `{{ NAME }}` keys referenced in the scenario
 - Captured variables during the run (see [URL capture](./url-capture.md))
 - Built-in `auth.email` / `auth.password` from env names in `auth:` (or defaults `E2E_TEST_USER_EMAIL` / `E2E_TEST_USER_PASSWORD`)
 - Nested keys: `{{ auth.email }}`
+
+Prefer putting secrets and demo-specific values in `--env-file` rather than relying on the ambient shell environment.
 
 `BASE_URL` from the env file overrides scenario `base_url` unless `--base-url` is passed (CLI wins).
 

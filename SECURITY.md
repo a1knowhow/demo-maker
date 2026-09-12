@@ -4,6 +4,18 @@
 
 Security fixes are applied to the latest release on the default branch (`main`). Older versions are not patched.
 
+## Runtime capabilities
+
+demo-maker is a CLI that runs only when invoked (there are **no** `preinstall` / `install` / `postinstall` scripts). When you run it, it may:
+
+- Drive a browser via Playwright (network access to the URLs in your scenarios)
+- Read named auth env vars or an `--env-file` for login steps
+- Substitute `{{ placeholders }}` from that env file, scenario-referenced env keys, and `BASE_URL` (it does **not** copy the entire process environment into templates)
+- Spawn `ffmpeg` on your `PATH` for video processing
+- Read/write scenario files and video output on the local filesystem
+
+Install Playwright browsers separately (`npx playwright install chromium`); this package does not download browsers at install time.
+
 ## Reporting a vulnerability
 
 **Do not open a public GitHub issue** for security vulnerabilities.

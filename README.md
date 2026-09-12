@@ -20,12 +20,21 @@ With demo-maker you version the walkthrough as YAML: edit steps, re-run, get the
 
 ## Install
 
+Published on npm as [`@a1knowhow/demo-maker`](https://www.npmjs.com/package/@a1knowhow/demo-maker):
+
 ```bash
 npm install -D @a1knowhow/demo-maker
-# or from a clone:
+npx playwright install chromium
+```
+
+Or from a clone:
+
+```bash
 npm install
 npx playwright install chromium
 ```
+
+The package ships TypeScript source and runs via `tsx`. Library imports (`import … from "@a1knowhow/demo-maker"`) need a TypeScript-capable toolchain (tsx, Vitest, or a bundler). See [Security](./SECURITY.md) for runtime capabilities.
 
 ## Quick start
 

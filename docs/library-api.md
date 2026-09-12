@@ -16,8 +16,17 @@ import {
 const scenario = loadScenario("./scenarios/demo.yaml", { cwd: process.cwd() });
 
 const context: RunContext = {
-  auth: { email: process.env.E2E_TEST_USER_EMAIL ?? "", password: process.env.E2E_TEST_USER_PASSWORD ?? "" },
-  variables: { ...process.env as Record<string, string>, BASE_URL: scenario.base_url },
+  auth: {
+    email: process.env.E2E_TEST_USER_EMAIL ?? "",
+    password: process.env.E2E_TEST_USER_PASSWORD ?? "",
+  },
+  // Prefer explicit keys or an env file — avoid spreading all of process.env
+  variables: {
+    BASE_URL: scenario.base_url,
+    ...(process.env.DEMO_WORKSPACE1
+      ? { DEMO_WORKSPACE1: process.env.DEMO_WORKSPACE1 }
+      : {}),
+  },
 };
 
 const result = await runScenario(scenario, context, {

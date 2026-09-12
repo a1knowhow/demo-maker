@@ -1,6 +1,8 @@
 import { describe, it, expect } from "vitest";
 import {
   applyBaseUrlOverride,
+  buildRunVariables,
+  collectFlatPlaceholderKeys,
   resolveBaseUrlFromEnv,
 } from "../src/env";
 
@@ -30,6 +32,49 @@ describe("demo-maker env base URL", () => {
     it("returns undefined when BASE_URL is unset or blank", () => {
       expect(resolveBaseUrlFromEnv({}, {})).toBeUndefined();
       expect(resolveBaseUrlFromEnv({ BASE_URL: "   " }, {})).toBeUndefined();
+    });
+  });
+
+  describe("collectFlatPlaceholderKeys", () => {
+    it("collects flat placeholders and ignores nested paths", () => {
+      expect(
+        collectFlatPlaceholderKeys(
+          'value: "{{ DEMO_WORKSPACE1 }}" url: "{{ auth.email }}" {{ BASE_URL }}'
+        ).sort()
+      ).toEqual(["BASE_URL", "DEMO_WORKSPACE1"]);
+    });
+  });
+
+  describe("buildRunVariables", () => {
+    it("does not copy the entire process environment", () => {
+      const vars = buildRunVariables({
+        envFromFile: { FROM_FILE: "file" },
+        baseUrl: "https://demo.example/",
+        allowFromProcess: ["ALLOWED", "MISSING"],
+        processEnv: {
+          ALLOWED: "yes",
+          SECRET: "nope",
+          PATH: "/usr/bin",
+        },
+      });
+      expect(vars).toEqual({
+        ALLOWED: "yes",
+        FROM_FILE: "file",
+        BASE_URL: "https://demo.example/",
+      });
+      expect(vars).not.toHaveProperty("SECRET");
+      expect(vars).not.toHaveProperty("PATH");
+    });
+
+    it("lets env file override allowlisted process env", () => {
+      expect(
+        buildRunVariables({
+          envFromFile: { TOKEN: "from-file" },
+          baseUrl: "https://demo.example/",
+          allowFromProcess: ["TOKEN"],
+          processEnv: { TOKEN: "from-shell" },
+        }).TOKEN
+      ).toBe("from-file");
     });
   });
 

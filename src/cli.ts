@@ -10,7 +10,13 @@ import {
   createDemoLogger,
   type RunContext,
 } from "./index";
-import { applyBaseUrlOverride, loadEnvFile } from "./env";
+import {
+  applyBaseUrlOverride,
+  buildRunVariables,
+  collectFlatPlaceholderKeys,
+  DEMO_BASE_URL_ENV_KEY,
+  loadEnvFile,
+} from "./env";
 import {
   buildUrlCaptureHooks,
   loadUrlCaptureRulesFile,
@@ -148,12 +154,10 @@ export async function runMain(argv: string[] = process.argv): Promise<number> {
   if (failFast) {
     logger.info("Fail-fast enabled (stop on first step failure).");
   }
-  const env: Record<string, string | undefined> = { ...process.env, ...envFromFile };
-
   const emailEnv = scenario.auth?.email_env ?? "E2E_TEST_USER_EMAIL";
   const passwordEnv = scenario.auth?.password_env ?? "E2E_TEST_USER_PASSWORD";
-  const email = env[emailEnv];
-  const password = env[passwordEnv];
+  const email = envFromFile[emailEnv] ?? process.env[emailEnv];
+  const password = envFromFile[passwordEnv] ?? process.env[passwordEnv];
 
   if (scenario.auth && (!email || !password)) {
     logger.error(
@@ -162,16 +166,19 @@ export async function runMain(argv: string[] = process.argv): Promise<number> {
     return 1;
   }
 
-  // Merge process.env into variables so {{ VAR }} works from shell or --env-file (env file overrides)
-  const envVars: Record<string, string> = {};
-  if (typeof process !== "undefined" && process.env) {
-    for (const [k, v] of Object.entries(process.env)) {
-      if (typeof v === "string") envVars[k] = v;
-    }
-  }
+  const allowFromProcess = [
+    emailEnv,
+    passwordEnv,
+    DEMO_BASE_URL_ENV_KEY,
+    ...collectFlatPlaceholderKeys(JSON.stringify(scenario)),
+  ];
   const context: RunContext = {
     auth: { email: email ?? "", password: password ?? "" },
-    variables: { ...envVars, ...envFromFile, BASE_URL: scenario.base_url },
+    variables: buildRunVariables({
+      envFromFile,
+      baseUrl: scenario.base_url,
+      allowFromProcess,
+    }),
   };
 
   let urlCaptureHooks;

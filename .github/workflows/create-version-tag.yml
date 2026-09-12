@@ -1,0 +1,158 @@
+name: Create Version Tag
+
+# Tags default-branch HEAD after package.json was bumped in a reviewed PR.
+# Pushing the tag triggers publish.yml (npm stage publish).
+#
+# Security (public repo):
+# - workflow_dispatch is already limited to users with write access
+# - this job additionally requires repository admin (not random collaborators)
+# - version must already match package.json on main (bump via PR + review)
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: >-
+          Optional version (e.g. 0.1.1 or v0.1.1).
+          Empty uses package.json version on the default branch.
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  group: create-version-tag
+  cancel-in-progress: false
+
+jobs:
+  create-tag:
+    name: Create and push version tag
+    runs-on: ubuntu-latest
+    steps:
+      - name: Require repository admin
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          perm="$(gh api "repos/${GITHUB_REPOSITORY}/collaborators/${GITHUB_ACTOR}/permission" --jq .permission)"
+          if [ "$perm" != "admin" ]; then
+            echo "::error::Only repository admins can create version tags (actor=${GITHUB_ACTOR} permission=${perm})."
+            exit 1
+          fi
+          echo "Actor ${GITHUB_ACTOR} has admin permission."
+
+      - name: Checkout default branch
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          fetch-depth: 0
+          fetch-tags: true
+
+      - name: Resolve version
+        id: version
+        env:
+          VERSION_OVERRIDE: ${{ inputs.version }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          git fetch --force --tags origin
+
+          PKG_VERSION="$(node -p "require('./package.json').version")"
+          if [[ ! "$PKG_VERSION" =~ ^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$ ]]; then
+            echo "::error::package.json version must be MAJOR.MINOR.PATCH (got ${PKG_VERSION})"
+            exit 1
+          fi
+
+          if [ -n "$VERSION_OVERRIDE" ]; then
+            VERSION="${VERSION_OVERRIDE#v}"
+            VERSION="v${VERSION}"
+            if [ "$VERSION" != "v${PKG_VERSION}" ]; then
+              echo "::error::Requested ${VERSION} but package.json is v${PKG_VERSION}. Bump version in a reviewed PR first."
+              exit 1
+            fi
+          else
+            VERSION="v${PKG_VERSION}"
+          fi
+
+          if [[ ! "$VERSION" =~ ^v(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$ ]]; then
+            echo "::error::version must use MAJOR.MINOR.PATCH format"
+            exit 1
+          fi
+
+          LATEST_TAG="$(
+            {
+              git tag --list |
+                grep -E '^v(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$' ||
+                true
+            } |
+              sort -V |
+              awk 'NF { latest = $0 } END { print latest }'
+          )"
+          if [ -z "$LATEST_TAG" ]; then
+            LATEST_TAG="v0.0.0"
+          fi
+
+          if git rev-parse --quiet --verify "refs/tags/${VERSION}" >/dev/null; then
+            echo "::error::tag ${VERSION} already exists"
+            exit 1
+          fi
+
+          version_is_greater() {
+            local candidate="${1#v}"
+            local baseline="${2#v}"
+            local candidate_major candidate_minor candidate_patch
+            local baseline_major baseline_minor baseline_patch
+
+            IFS='.' read -r candidate_major candidate_minor candidate_patch \
+              <<< "$candidate"
+            IFS='.' read -r baseline_major baseline_minor baseline_patch \
+              <<< "$baseline"
+
+            if (( 10#${candidate_major} != 10#${baseline_major} )); then
+              (( 10#${candidate_major} > 10#${baseline_major} ))
+              return
+            fi
+            if (( 10#${candidate_minor} != 10#${baseline_minor} )); then
+              (( 10#${candidate_minor} > 10#${baseline_minor} ))
+              return
+            fi
+            (( 10#${candidate_patch} > 10#${baseline_patch} ))
+          }
+
+          if ! version_is_greater "$VERSION" "$LATEST_TAG"; then
+            echo "::error::${VERSION} must be greater than latest tag ${LATEST_TAG}"
+            exit 1
+          fi
+
+          COMMIT_SHA="$(git rev-parse HEAD)"
+          {
+            echo "latest_tag=${LATEST_TAG}"
+            echo "version=${VERSION}"
+            echo "commit_sha=${COMMIT_SHA}"
+          } >> "$GITHUB_OUTPUT"
+          echo "Resolved ${VERSION} from package.json (latest tag ${LATEST_TAG})"
+
+      - name: Create and push tag
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          set -euo pipefail
+          git tag "$VERSION"
+          git push origin "refs/tags/${VERSION}"
+
+      - name: Add workflow summary
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+          COMMIT_SHA: ${{ steps.version.outputs.commit_sha }}
+          LATEST_TAG: ${{ steps.version.outputs.latest_tag }}
+        run: |
+          {
+            echo "## Version tag created"
+            echo
+            echo "- Tag: \`${VERSION}\`"
+            echo "- Previous: \`${LATEST_TAG}\`"
+            echo "- Commit: \`${COMMIT_SHA}\`"
+            echo "- Next: \`publish.yml\` stages the npm package (approve on npmjs.com with 2FA)"
+          } >> "$GITHUB_STEP_SUMMARY"
