@@ -1,3 +1,8 @@
+---
+title: Library API
+nav_order: 12
+---
+
 # Library API
 
 Purpose: Use demo-maker from TypeScript instead of the CLI.

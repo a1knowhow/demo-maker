@@ -1,3 +1,8 @@
+---
+title: Video and pacing
+nav_order: 10
+---
+
 # Video and pacing
 
 Purpose: Recording quality, overlays, ffmpeg post-processing, and timing.

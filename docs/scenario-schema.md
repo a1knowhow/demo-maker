@@ -1,6 +1,11 @@
+---
+title: Scenario schema
+nav_order: 4
+---
+
 # Scenario schema
 
-Purpose: Top-level YAML fields for an entry scenario. Typed definitions: [`src/types.ts`](../src/types.ts).
+Purpose: Top-level YAML fields for an entry scenario. Typed definitions: [`src/types.ts`](https://github.com/a1knowhow/demo-maker/blob/main/src/types.ts).
 
 **Metadata rule:** Only the **entry** file (the path you pass to `npx demo-maker run`) supplies `name`, `base_url`, `video`, pacing, `auth`, etc. Imported files contribute **steps only**.
 

@@ -1,3 +1,8 @@
+---
+title: Repairing scenarios
+nav_order: 11
+---
+
 # Repairing scenarios
 
 Purpose: YAML is valid but fails at runtime after UI changes. This is a **runtime** smoke loop, not schema validation.

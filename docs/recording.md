@@ -1,3 +1,8 @@
+---
+title: Recording
+nav_order: 9
+---
+
 # Recording
 
 Purpose: Capture browser actions into YAML (or import from JSON).

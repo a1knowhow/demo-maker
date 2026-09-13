@@ -1,3 +1,8 @@
+---
+title: CLI
+nav_order: 3
+---
+
 # CLI
 
 Purpose: Commands and flags for the `demo-maker` binary.
