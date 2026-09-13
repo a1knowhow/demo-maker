@@ -1,8 +1,10 @@
 # demo-maker
 
-> Demo videos as code — YAML + Playwright → polished, consistent product feature videos. Configure once, re-run forever.
+> Open-source product demo video maker for websites. Create consistent website demo videos from YAML configuration with Playwright — no manual clicking or re-recording. Not an AI presentation or slide-deck maker.
 
 Open-source CLI (`@a1knowhow/demo-maker`). Requires Node.js 20+, Playwright Chromium, and ffmpeg. Apache-2.0.
+
+Category synonyms: product demo video, website demo as code, YAML + Playwright → MP4, consistent re-runnable demos.
 
 Prefer markdown docs linked below over scraping HTML. Schema lives in source TypeScript.
 

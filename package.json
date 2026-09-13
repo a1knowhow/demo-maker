@@ -1,7 +1,7 @@
 {
   "name": "@a1knowhow/demo-maker",
   "version": "0.1.2",
-  "description": "Demo videos as code — configure once, re-run forever. YAML + Playwright → polished, consistent product feature videos.",
+  "description": "Open-source product demo video maker for websites. Create consistent website demo videos from YAML configuration with Playwright — no manual clicking or re-recording.",
   "license": "Apache-2.0",
   "type": "module",
   "bin": {
@@ -24,11 +24,14 @@
     "automation",
     "cli",
     "demo",
+    "demo-as-code",
     "ffmpeg",
     "playwright",
     "product-demo",
+    "product-demo-video",
     "screen-recording",
     "video",
+    "website-demo",
     "yaml"
   ],
   "engines": {
@@ -51,7 +54,9 @@
     "test:watch": "vitest",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "pack:check": "npm pack --dry-run",
-    "prepublishOnly": "npm test && npm run typecheck"
+    "prepublishOnly": "npm test && npm run typecheck",
+    "docs:install": "cd docs && bundle config set --local path vendor/bundle && bundle install",
+    "docs:serve": "cd docs && bundle exec jekyll serve --baseurl /demo-maker --livereload"
   },
   "dependencies": {
     "playwright": "^1.62.1",

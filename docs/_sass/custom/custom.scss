@@ -1,0 +1,34 @@
+// Theme toggle — match search-icon weight/size in the header
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  margin: 0;
+  padding: 0 0.75rem;
+  color: $grey-dk-000;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+
+  &:hover {
+    color: $link-color;
+  }
+
+  .theme-toggle-icon {
+    width: #{$sp-4 * 1.2};
+    height: #{$sp-4 * 1.2};
+  }
+}
+
+.aux-nav .site-button {
+  display: inline-flex;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+.aux-nav-icon {
+  width: #{$sp-4 * 1.1};
+  height: #{$sp-4 * 1.1};
+  flex-shrink: 0;
+}
