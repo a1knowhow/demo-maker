@@ -3,6 +3,7 @@ title: Actions
 nav_order: 5
 ---
 
+{% raw %}
 # Actions
 
 Purpose: Reference for every `action:` value in scenario steps. Schema: [`src/types.ts`](https://github.com/a1knowhow/demo-maker/blob/main/src/types.ts).
@@ -163,3 +164,4 @@ Skipped in `--headless`. Prefer `wait` + `timeout_ms` for video pacing.
 - [Locators](./locators.md)
 - [Scenario schema](./scenario-schema.md)
 - [Video and pacing](./video-and-pacing.md)
+{% endraw %}

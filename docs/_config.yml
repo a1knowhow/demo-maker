@@ -20,6 +20,8 @@ heading_anchors: true
 # SSR fallback before JS; default for readers is system preference (see js/custom.js)
 color_scheme: light
 
+google_site_verification: PLeofoAxP71MoBgsJPpxHHO1wzdrD6oamkO-HtPqAhY
+
 aux_links:
   "GitHub": https://github.com/a1knowhow/demo-maker
 aux_links_new_tab: true
@@ -29,11 +31,6 @@ defaults:
       path: ""
     values:
       layout: default
-  - scope:
-      path: "*.md"
-    values:
-      # Docs show {{ placeholders }} literally; don't run Liquid on markdown bodies
-      render_with_liquid: false
 
 exclude:
   - Gemfile

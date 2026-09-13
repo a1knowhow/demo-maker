@@ -3,6 +3,7 @@ title: Locators
 nav_order: 6
 ---
 
+{% raw %}
 # Locators
 
 Purpose: How to target UI elements in YAML (`locator:`). Prefer accessibility over CSS.
@@ -122,3 +123,4 @@ Add unique `aria-label` on inputs, editors, and buttons. In loops, suffix with i
 When recording/importing, priority is roughly: `aria-label`/`label=` → Playwright `getBy*` code → internal selector parse → fallback `text` or `(recorded)`.
 
 See [Recording](./recording.md) and [Repairing scenarios](./repairing-scenarios.md).
+{% endraw %}
