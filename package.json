@@ -1,6 +1,6 @@
 {
   "name": "@a1knowhow/demo-maker",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Demo videos as code — configure once, re-run forever. YAML + Playwright → polished, consistent product feature videos.",
   "license": "Apache-2.0",
   "type": "module",
