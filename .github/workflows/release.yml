@@ -84,7 +84,7 @@ jobs:
           generate_release_notes: true
           token: ${{ github.token }}
 
-      - name: Dispatch npm stage publish
+      - name: Dispatch npm publish
         if: ${{ inputs.skip_npm_publish != true }}
         env:
           GH_TOKEN: ${{ github.token }}
@@ -108,6 +108,6 @@ jobs:
             if [ "$SKIP_NPM" = "true" ]; then
               echo "- npm: skipped (\`skip_npm_publish\`)"
             else
-              echo "- Next: \`publish.yml\` stages the npm package (approve on npmjs.com with 2FA)"
+              echo "- Next: \`publish.yml\` publishes to npm (Trusted Publishing)"
             fi
           } >> "$GITHUB_STEP_SUMMARY"
