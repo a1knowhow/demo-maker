@@ -3,6 +3,7 @@ title: CLI
 nav_order: 3
 ---
 
+{% raw %}
 # CLI
 
 Purpose: Commands and flags for the `demo-maker` binary.
@@ -76,3 +77,4 @@ demo-maker export-chapters output/videos   # newest *.timing.json in dir
 - Node 20+
 - Playwright Chromium (`npx playwright install chromium`)
 - ffmpeg on `PATH` for `.mp4`, `cut_video` splice, background audio
+{% endraw %}

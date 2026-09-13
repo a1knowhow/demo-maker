@@ -3,6 +3,7 @@ title: Variables
 nav_order: 7
 ---
 
+{% raw %}
 # Variables and templates
 
 Purpose: Runtime substitution in scenario strings.
@@ -51,3 +52,4 @@ video:
 Produces e.g. `demo-2026-04-01-1432.mp4`.
 
 Implemented in `src/templates.ts`.
+{% endraw %}

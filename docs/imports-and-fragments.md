@@ -3,6 +3,7 @@ title: Imports and fragments
 nav_order: 8
 ---
 
+{% raw %}
 # Imports and fragments
 
 Purpose: Compose reusable YAML without duplicating steps.
@@ -81,3 +82,4 @@ steps:
 ```
 
 See [Recording](./recording.md).
+{% endraw %}

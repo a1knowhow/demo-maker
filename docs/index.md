@@ -3,6 +3,7 @@ title: Home
 nav_order: 1
 ---
 
+{% raw %}
 # demo-maker
 
 **demo-maker** is an open-source product demo video maker for websites. You describe the walkthrough in YAML; Playwright runs the clicks and records a consistent MP4. Edit the scenario when the UI changes and re-run — no manual clicking or re-recording. It is not an AI presentation or slide-deck maker.
@@ -96,3 +97,4 @@ Yes. **demo-maker** is open source (Apache-2.0) on [GitHub](https://github.com/a
 ## About A1KnowHow
 
 demo-maker was created originally for building demo videos for [A1KnowHow](https://a1knowhow.com/) — AI workflows, document organisation, chat, search, and AI agents with skills and MCP tool integration.
+{% endraw %}

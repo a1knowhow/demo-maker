@@ -3,6 +3,7 @@ title: Video and pacing
 nav_order: 10
 ---
 
+{% raw %}
 # Video and pacing
 
 Purpose: Recording quality, overlays, ffmpeg post-processing, and timing.
@@ -112,3 +113,4 @@ On a large external display, omit `viewport` for native 1080p rendering.
 - [Actions](./actions.md) (`title_card`, `cut_video`, `wait`)
 - [Variables](./variables.md) (filename templates)
 - [Getting started](./getting-started.md)
+{% endraw %}

@@ -3,6 +3,7 @@ title: Recording
 nav_order: 9
 ---
 
+{% raw %}
 # Recording
 
 Purpose: Capture browser actions into YAML (or import from JSON).
@@ -62,3 +63,4 @@ demo-maker import recording.json -o scenario.yaml --base-url http://localhost:30
 ## Repair loop
 
 See [Repairing scenarios](./repairing-scenarios.md) for detect → isolate → continue-from → transplant locators → verify.
+{% endraw %}

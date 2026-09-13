@@ -3,6 +3,7 @@ title: Getting started
 nav_order: 2
 ---
 
+{% raw %}
 # Getting started
 
 Purpose: Step-by-step from install to a first recorded MP4.
@@ -223,3 +224,4 @@ Use `action: log` with `── Scene N: …` markers and/or step `caption:` for 
 - Locator guide: [Locators](./locators.md)
 - After UI breaks demos: [Repairing scenarios](./repairing-scenarios.md)
 - All flags: [CLI](./cli.md)
+{% endraw %}

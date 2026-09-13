@@ -3,6 +3,7 @@ title: URL capture
 nav_order: 13
 ---
 
+{% raw %}
 # URL capture
 
 Purpose: Store path segments from the browser URL as `{{ variables }}` during a run.
@@ -78,3 +79,4 @@ await runScenario(scenario, context, {
 - [Variables](./variables.md)
 - [CLI](./cli.md)
 - [Library API](./library-api.md)
+{% endraw %}

@@ -3,6 +3,7 @@ title: Library API
 nav_order: 12
 ---
 
+{% raw %}
 # Library API
 
 Purpose: Use demo-maker from TypeScript instead of the CLI.
@@ -67,3 +68,4 @@ if (!result.success) {
 `RunScenarioOptions`: `logger`, `headless`, `cwd`, `storageStatePath`, `saveStorageStatePath`, `failFast`, `endStep`, `pauseAtEnd`, `debugDir`, `urlCaptureHooks`.
 
 Relative paths in YAML (`video.dir`, file uploads) resolve against `cwd` (default `process.cwd()`).
+{% endraw %}
