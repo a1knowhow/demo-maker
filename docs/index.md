@@ -1,10 +1,15 @@
+---
+title: Documentation
+nav_order: 1
+---
+
 # Documentation
 
 Purpose: Index for humans and AI agents working with `@a1knowhow/demo-maker`.
 
 **Read this first:** [Getting started](./getting-started.md) (install → first run → first MP4).
 
-Typed schema source of truth: [`src/types.ts`](../src/types.ts).
+Typed schema source of truth: [`src/types.ts`](https://github.com/a1knowhow/demo-maker/blob/main/src/types.ts).
 
 ## Topic map
 

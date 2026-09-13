@@ -20,7 +20,8 @@ Prefer markdown docs linked below over scraping HTML. Schema lives in source Typ
 
 ## Optional
 
-- [Docs index](https://raw.githubusercontent.com/a1knowhow/demo-maker/main/docs/README.md)
+- [Docs index](https://raw.githubusercontent.com/a1knowhow/demo-maker/main/docs/index.md)
+- [Docs site](https://a1knowhow.github.io/demo-maker/)
 - [Imports & fragments](https://raw.githubusercontent.com/a1knowhow/demo-maker/main/docs/imports-and-fragments.md)
 - [Variables](https://raw.githubusercontent.com/a1knowhow/demo-maker/main/docs/variables.md)
 - [URL capture](https://raw.githubusercontent.com/a1knowhow/demo-maker/main/docs/url-capture.md)

@@ -1,6 +1,11 @@
+---
+title: Actions
+nav_order: 5
+---
+
 # Actions
 
-Purpose: Reference for every `action:` value in scenario steps. Schema: [`src/types.ts`](../src/types.ts).
+Purpose: Reference for every `action:` value in scenario steps. Schema: [`src/types.ts`](https://github.com/a1knowhow/demo-maker/blob/main/src/types.ts).
 
 Any step may include optional `caption:` (overlay/log) and `timeout_ms:` (default 10000 unless overridden by `action_timeout_ms`).
 

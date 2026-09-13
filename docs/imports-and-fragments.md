@@ -1,3 +1,8 @@
+---
+title: Imports and fragments
+nav_order: 8
+---
+
 # Imports and fragments
 
 Purpose: Compose reusable YAML without duplicating steps.

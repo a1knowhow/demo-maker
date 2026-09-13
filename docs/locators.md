@@ -1,3 +1,8 @@
+---
+title: Locators
+nav_order: 6
+---
+
 # Locators
 
 Purpose: How to target UI elements in YAML (`locator:`). Prefer accessibility over CSS.

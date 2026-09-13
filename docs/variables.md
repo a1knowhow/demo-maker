@@ -1,3 +1,8 @@
+---
+title: Variables
+nav_order: 7
+---
+
 # Variables and templates
 
 Purpose: Runtime substitution in scenario strings.

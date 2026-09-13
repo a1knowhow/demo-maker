@@ -1,0 +1,22 @@
+title: demo-maker
+description: Demo videos as code — YAML + Playwright → product feature videos
+url: https://a1knowhow.github.io
+baseurl: /demo-maker
+
+remote_theme: just-the-docs/just-the-docs@v0.10.1
+plugins:
+  - jekyll-remote-theme
+  - jekyll-seo-tag
+
+search_enabled: true
+heading_anchors: true
+
+aux_links:
+  "GitHub": https://github.com/a1knowhow/demo-maker
+aux_links_new_tab: true
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default

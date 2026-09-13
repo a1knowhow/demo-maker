@@ -42,7 +42,7 @@ The package ships TypeScript source and runs via `tsx`. Library imports (`import
 npx demo-maker run examples/smoke.yaml --headless --fast
 ```
 
-Step-by-step (install → first MP4 → record → fragments): **[docs/getting-started.md](./docs/getting-started.md)**
+Step-by-step (install → first MP4 → record → fragments): **[Getting started](https://a1knowhow.github.io/demo-maker/getting-started.html)** · [docs on GitHub](./docs/getting-started.md)
 
 ## Example walkthrough
 
@@ -66,20 +66,22 @@ npx demo-maker run examples/demo2-github-actions.yaml
 
 ## Documentation
 
-
-| Topic                   | Link                                                         |
-| ----------------------- | ------------------------------------------------------------ |
-| Index                   | [docs/README.md](./docs/README.md)                           |
-| Getting started         | [docs/getting-started.md](./docs/getting-started.md)         |
-| CLI                     | [docs/cli.md](./docs/cli.md)                                 |
-| Actions                 | [docs/actions.md](./docs/actions.md)                         |
-| Locators                | [docs/locators.md](./docs/locators.md)                       |
-| Video & pacing          | [docs/video-and-pacing.md](./docs/video-and-pacing.md)       |
-| Recording               | [docs/recording.md](./docs/recording.md)                     |
-| Repair after UI changes | [docs/repairing-scenarios.md](./docs/repairing-scenarios.md) |
+Site: **[https://a1knowhow.github.io/demo-maker/](https://a1knowhow.github.io/demo-maker/)**
 
 
-Typed schema: `[src/types.ts](./src/types.ts)`.
+| Topic                   | Docs site | Source |
+| ----------------------- | --------- | ------ |
+| Index                   | [docs site](https://a1knowhow.github.io/demo-maker/) | [docs/index.md](./docs/index.md) |
+| Getting started         | [getting started](https://a1knowhow.github.io/demo-maker/getting-started.html) | [docs/getting-started.md](./docs/getting-started.md) |
+| CLI                     | [CLI](https://a1knowhow.github.io/demo-maker/cli.html) | [docs/cli.md](./docs/cli.md) |
+| Actions                 | [actions](https://a1knowhow.github.io/demo-maker/actions.html) | [docs/actions.md](./docs/actions.md) |
+| Locators                | [locators](https://a1knowhow.github.io/demo-maker/locators.html) | [docs/locators.md](./docs/locators.md) |
+| Video & pacing          | [video & pacing](https://a1knowhow.github.io/demo-maker/video-and-pacing.html) | [docs/video-and-pacing.md](./docs/video-and-pacing.md) |
+| Recording               | [recording](https://a1knowhow.github.io/demo-maker/recording.html) | [docs/recording.md](./docs/recording.md) |
+| Repair after UI changes | [repairing](https://a1knowhow.github.io/demo-maker/repairing-scenarios.html) | [docs/repairing-scenarios.md](./docs/repairing-scenarios.md) |
+
+
+Typed schema: [`src/types.ts`](./src/types.ts).
 
 ## Commands
 
@@ -102,3 +104,7 @@ Report vulnerabilities privately — see [SECURITY.md](./SECURITY.md). Do not op
 ## License
 
 Apache License 2.0 — see [LICENSE](./LICENSE).
+
+## About A1KnowHow
+
+demo-maker was created originally for building demo videos for [A1KnowHow](https://a1knowhow.com/) — AI workflows, document organisation, chat, search, and AI agents with skills and MCP tool integration.

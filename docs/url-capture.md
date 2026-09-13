@@ -1,3 +1,8 @@
+---
+title: URL capture
+nav_order: 13
+---
+
 # URL capture
 
 Purpose: Store path segments from the browser URL as `{{ variables }}` during a run.

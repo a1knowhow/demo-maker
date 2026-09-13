@@ -1,3 +1,8 @@
+---
+title: Getting started
+nav_order: 2
+---
+
 # Getting started
 
 Purpose: Step-by-step from install to a first recorded MP4.
