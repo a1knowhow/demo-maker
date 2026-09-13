@@ -7,9 +7,9 @@ nav_order: 7
 
 Purpose: Runtime substitution in scenario strings.
 
-## `{{ placeholders }}`
+## Placeholders
 
-In `value:`, `url:`, string locator fields, and captions, use:
+In `value:`, `url:`, string locator fields, and captions, use `{{ name }}` syntax:
 
 ```yaml
 value: "{{ auth.email }}"

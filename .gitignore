@@ -22,3 +22,8 @@ session.json
 ehthumbs.db
 Thumbs.db
 .pre-commit-config.yaml
+docs/_site/
+docs/vendor/
+docs/.bundle/
+docs/.jekyll-cache/
+docs/.sass-cache/

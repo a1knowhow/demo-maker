@@ -1,0 +1,11 @@
+# Local docs preview only. Production GitHub Pages builds from /docs without this
+# Gemfile (branch deploy + allowlisted plugins). Jekyll 4 here matches Ruby 3.4+/4.x;
+# the live site still uses the github-pages / Jekyll 3 stack.
+source "https://rubygems.org"
+
+gem "jekyll", "~> 4.3"
+gem "jekyll-remote-theme"
+gem "jekyll-seo-tag"
+gem "jekyll-include-cache"
+gem "jekyll-sitemap"
+gem "webrick"

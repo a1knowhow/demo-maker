@@ -1,0 +1,62 @@
+{% assign seo_description = site.description | strip_newlines | strip %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "demo-maker",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "cross-platform",
+  "description": {{ seo_description | jsonify }},
+  "url": {{ site.url | append: site.baseurl | append: "/" | jsonify }},
+  "downloadUrl": "https://www.npmjs.com/package/@a1knowhow/demo-maker",
+  "codeRepository": "https://github.com/a1knowhow/demo-maker",
+  "license": "https://www.apache.org/licenses/LICENSE-2.0",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+</script>
+{% if page.url == "/" %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a product demo video maker?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A product demo video maker turns a real product walkthrough into a shareable video. demo-maker does that for websites: YAML steps drive a browser with Playwright and produce a consistent MP4 you can re-run after UI changes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is demo-maker different from an AI presentation maker?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "AI presentation makers build slides or motion graphics from text. demo-maker films your actual website: configured clicks, navigations, and waits on the live UI — not a generated deck."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I make a consistent website demo video without re-recording?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Write the walkthrough once as YAML, enable video output, then run npx demo-maker run your-scenario.yaml. When the product UI changes, edit the affected steps and re-run to get the same consistent demo again."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is demo-maker open source?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. demo-maker is open source (Apache-2.0) on GitHub and published as @a1knowhow/demo-maker on npm."
+      }
+    }
+  ]
+}
+</script>
+{% endif %}

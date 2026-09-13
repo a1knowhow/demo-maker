@@ -1,6 +1,6 @@
 # demo-maker
 
-🎬 **Demo videos as code** — configure once, re-run forever. YAML + Playwright → polished, consistent product feature videos.
+🎬 **Open-source product demo video maker for websites.** Create consistent website demo videos from YAML configuration with Playwright — no manual clicking or re-recording.
 
 Turn versioned scenario configs into consistent product feature videos — reconfigure, re-run, no manual re-recording.
 
