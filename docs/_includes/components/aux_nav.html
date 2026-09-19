@@ -1,16 +1,33 @@
 <nav aria-label="Auxiliary" class="aux-nav">
   <ul class="aux-nav-list">
     {% for link in site.aux_links %}
+      {% if link.first == "GitHub" %}
+        {% assign tooltip = "Check GitHub repo" %}
+        {% assign icon_id = "svg-github" %}
+      {% elsif link.first == "npm" %}
+        {% assign tooltip = "View npm package" %}
+        {% assign icon_id = "svg-npm" %}
+      {% elsif link.first == "llms.txt" %}
+        {% assign tooltip = "Read llms.txt" %}
+        {% assign icon_id = "svg-llms" %}
+      {% else %}
+        {% assign tooltip = link.first %}
+        {% assign icon_id = nil %}
+      {% endif %}
       <li class="aux-nav-list-item">
         <a href="{{ link.last }}" class="site-button"
+          aria-label="{{ tooltip }}"
+          title="{{ tooltip }}"
           {% if site.aux_links_new_tab %}
           target="_blank" rel="noopener noreferrer"
           {% endif %}
         >
-          {% if link.first == "GitHub" %}
-            <svg viewBox="0 0 16 16" class="aux-nav-icon" aria-hidden="true"><use href="#svg-github" xlink:href="#svg-github"></use></svg>
+          {% if icon_id %}
+            <svg viewBox="0 0 16 16" class="aux-nav-icon" aria-hidden="true"><use href="#{{ icon_id }}" xlink:href="#{{ icon_id }}"></use></svg>
+            <span class="sr-only">{{ tooltip }}</span>
+          {% else %}
+            {{ link.first }}
           {% endif %}
-          {{ link.first }}
         </a>
       </li>
     {% endfor %}
