@@ -24,6 +24,8 @@ google_site_verification: PLeofoAxP71MoBgsJPpxHHO1wzdrD6oamkO-HtPqAhY
 
 aux_links:
   "GitHub": https://github.com/a1knowhow/demo-maker
+  "npm": https://www.npmjs.com/package/@a1knowhow/demo-maker
+  "llms.txt": https://raw.githubusercontent.com/a1knowhow/demo-maker/main/llms.txt
 aux_links_new_tab: true
 
 defaults:

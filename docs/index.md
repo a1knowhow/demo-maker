@@ -92,7 +92,7 @@ Write the walkthrough once as YAML, enable `video:`, then run `npx demo-maker ru
 
 ### Is demo-maker open source?
 
-Yes. **demo-maker** is open source (Apache-2.0) on [GitHub](https://github.com/a1knowhow/demo-maker) and published as [`@a1knowhow/demo-maker`](https://www.npmjs.com/package/@a1knowhow/demo-maker) on npm.
+Yes. **demo-maker** is open source (Apache-2.0) on [GitHub](https://github.com/a1knowhow/demo-maker) and published as [`@a1knowhow/demo-maker`](https://www.npmjs.com/package/@a1knowhow/demo-maker) on npm. Agent-oriented overview: [`llms.txt`](https://raw.githubusercontent.com/a1knowhow/demo-maker/main/llms.txt).
 
 ## About A1KnowHow
 

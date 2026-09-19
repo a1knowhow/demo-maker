@@ -30,6 +30,7 @@
     var btn = document.querySelector(".js-theme-toggle");
     if (!btn) return;
     btn.setAttribute("aria-label", ariaFor(theme));
+    btn.setAttribute("title", "Toggle theme");
     var use = btn.querySelector("use");
     if (!use) return;
     var href = iconFor(theme);
