@@ -60,7 +60,7 @@
   },
   "dependencies": {
     "playwright": "^1.62.1",
-    "tsx": "^4.23.13",
+    "tsx": "^4.23.15",
     "yaml": "^2.9.1"
   },
   "devDependencies": {
