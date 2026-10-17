@@ -59,7 +59,7 @@
     "docs:serve": "cd docs && bundle exec jekyll serve --baseurl /demo-maker --livereload"
   },
   "dependencies": {
-    "playwright": "^1.62.1",
+    "playwright": "^1.64.0",
     "tsx": "^4.23.15",
     "yaml": "^2.9.1"
   },
