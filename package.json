@@ -1,6 +1,6 @@
 {
   "name": "@a1knowhow/demo-maker",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Open-source product demo video maker for websites. Create consistent website demo videos from YAML configuration with Playwright — no manual clicking or re-recording.",
   "license": "Apache-2.0",
   "type": "module",
